@@ -13,5 +13,3 @@ done
 cd $CURRENT
 
 rm -rf $TMPDIR
-
-ln -s $HOME/.dotfiles/aws $HOME/.aws

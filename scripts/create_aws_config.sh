@@ -4,7 +4,7 @@ if [ ! -d ~/.aws ]; then
     mkdir ~/.aws
 fi
 
-cat <<- AWSFILE > testaws/config
+cat <<- AWSFILE > ~/.aws/config
 [default]
 sso_start_url = ${AWS_SSO_URL}
 sso_region = ${AWS_SSO_REGION}
