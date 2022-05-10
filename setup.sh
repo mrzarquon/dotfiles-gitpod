@@ -13,3 +13,7 @@ done
 cd $CURRENT
 
 rm -rf $TMPDIR
+
+for bashrc in ~/.dotfiles/bash.d/*; do
+  cp "$bashrc" ~/.bashrc.d/
+done
