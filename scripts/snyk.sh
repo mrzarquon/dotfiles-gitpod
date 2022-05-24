@@ -12,17 +12,6 @@ if command -v snyk &> /dev/null; then
 fi
 
 
-
-if [ -z ${1+x} ]; then 
-    echo "run get_snyk.sh /dir/where/to/put/binary/ snyk-linux"
-    exit 1
-fi
-
-if [ -z ${2+x} ]; then 
-    echo "run get_snyk.sh /dir/where/to/put/binary/ snyk-linux"
-    exit 1
-fi
-
 declare -x BINDIR
 
 BINDIR="/usr/local/bin"
