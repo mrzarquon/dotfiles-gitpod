@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if command -v /usr/local/bin/kubectl &> /dev/null; then
+    exit
+fi
+
+
 
 curl -o aws-iam-authenticator https://s3.us-west-2.amazonaws.com/amazon-eks/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator
 curl -o aws-iam-authenticator.sha256 https://s3.us-west-2.amazonaws.com/amazon-eks/1.21.2/2021-07-05/bin/linux/amd64/aws-iam-authenticator.sha256

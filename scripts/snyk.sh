@@ -7,8 +7,11 @@
 # if the binary already exists, it will update it to latest
 # assumes running as root (in a container)
 
+if command -v snyk &> /dev/null; then
+    exit
+fi
 
-set -eo pipefail
+
 
 if [ -z ${1+x} ]; then 
     echo "run get_snyk.sh /dir/where/to/put/binary/ snyk-linux"

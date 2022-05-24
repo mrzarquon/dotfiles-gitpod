@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if command -v /usr/local/bin/vale &> /dev/null; then
+    exit
+fi
+
 install_github_release(){
 
     path="${1}"
