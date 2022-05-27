@@ -1,0 +1,23 @@
+#!/bin/bash
+# adds the GP badge to gitpod
+
+
+function gp-badge (){
+    if [[ ${1} == "shield" ]]; then
+        LOGO="https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod"
+    else
+        LOGO="https://gitpod.io/button/open-in-gitpod.svg"
+    fi
+
+    if [ -z $GP_DOMAIN ]; then
+        GP_DOMAIN="gitpod.io"
+    fi
+    cat << HEREDOC
+
+
+
+[![Open in Gitpod](${LOGO})](https://${GP_DOMAIN}/from-referrer/)
+
+HEREDOC
+
+}
