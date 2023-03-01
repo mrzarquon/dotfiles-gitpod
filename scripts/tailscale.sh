@@ -6,8 +6,8 @@ set -euo pipefail
 
 install_tailscale_repos() {
     echo "Installing Tailscale repos"
-    curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg -o /usr/share/keyrings/tailscale.gpg
-    curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list -o /etc/apt/sources.list.d/tailscale.list
+    sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg -o /usr/share/keyrings/tailscale.gpg
+    sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list -o /etc/apt/sources.list.d/tailscale.list
     echo "Installed Tailscale repos"
 }
 
@@ -15,11 +15,18 @@ start_tailscaled() {
     if [[ ! -f /usr/sbin/tailscaled ]]; then
         echo "Tailscale not installed"
         install_tailscale_repos
-        install-packages tailscale
+        sudo install-packages tailscale tmux
         update-alternatives --set ip6tables /usr/sbin/ip6tables-nft
     else
         echo "Ensuring tailscale is up to date"
-        sudo /usr/bin/tailscale update
+        TAILSCALE_B="$(/usr/bin/tailscale version --json | jq .short | cut -d'.' -f2)"
+        if [ $TAILSCALE_B -ge 36 ]; then
+            sudo /usr/bin/tailscale update
+            sudo install-packages tmux
+        else
+            install_tailscale_repos
+            sudo install-packages tailscale tmux
+        fi
         echo "Starting tailscaled"
         tmux new-session -d -s tailscaled 'sudo /usr/sbin/tailscaled --state=mem:'
     fi
