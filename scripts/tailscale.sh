@@ -19,7 +19,7 @@ start_tailscaled() {
         update-alternatives --set ip6tables /usr/sbin/ip6tables-nft
     else
         echo "Ensuring tailscale is up to date"
-        TAILSCALE_B="$(/usr/bin/tailscale version --json | jq .short | cut -d'.' -f2)"
+        TAILSCALE_B="$(/usr/bin/tailscale version | grep -m 1 -oP '(?<=\d[.])\d+(?=\.\d+(?!\.))' )"
         if [ $TAILSCALE_B -ge 36 ]; then
             sudo /usr/bin/tailscale update
             sudo install-packages tmux
