@@ -7,6 +7,9 @@ if [[ -f "$HOME/.gnupg/gpg.conf" ]]; then
     exit
 fi
 
+if [[ -z "$GPG_ID" ]]; then
+    eval $(gp env -e GPG_ID=AC3A6CB9E464DBDA)
+fi
 
 if [[ -v GPG_ID && ! -z "$GPG_ID" ]]; then
     # pedantically ensure $HOME/.gnupg is setup correctly
