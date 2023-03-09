@@ -9,6 +9,7 @@ fi
 
 if [[ -z "$GPG_ID" ]]; then
     eval $(gp env -e GPG_ID=AC3A6CB9E464DBDA)
+    exit
 fi
 
 if [[ -v GPG_ID && ! -z "$GPG_ID" ]]; then
