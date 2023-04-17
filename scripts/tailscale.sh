@@ -37,10 +37,10 @@ connect_tailscale() {
     TS_HOSTNAME="${TS_USERNAME}-${GITPOD_WORKSPACE_ID}"
     if [[ "$TS_AUTH" != "unset" ]]; then
         echo "TS_AUTH variable present, auto connecting"
-        sudo -E tailscale up --accept-routes --hostname="$TS_HOSTNAME" --auth-key="$TS_AUTH"
+        sudo -E tailscale up --accept-routes --hostname="$TS_HOSTNAME" --auth-key="$TS_AUTH" --netfilter-mode=off
     else
         echo "TS_AUTH environment variable not set, will prompt for interactive auth"
-        sudo -E tailscale up --accept-routes --hostname="$TS_HOSTNAME"
+        sudo -E tailscale up --accept-routes --hostname="$TS_HOSTNAME" --netfilter-mode=off
     fi
 }
 
