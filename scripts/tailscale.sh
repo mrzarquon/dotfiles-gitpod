@@ -6,8 +6,8 @@ set -euo pipefail
 
 install_tailscale_repos() {
     echo "Installing Tailscale repos"
-    sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg -o /usr/share/keyrings/tailscale.gpg
-    sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list -o /etc/apt/sources.list.d/tailscale.list
+    sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg -o /usr/share/keyrings/tailscale.gpg
+    sudo curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list -o /etc/apt/sources.list.d/tailscale.list
     echo "Installed Tailscale repos"
 }
 
